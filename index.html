@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruah</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="img/ChatGPT Image 17 de out. de 2025, 12_16_39.png" type="image/x-icon">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="img/ChatGPT Image 17 de out. de 2025, 12_16_39.png" alt="Logo Ruah">
+    </div>
+    <nav class="menu">
+      <a href="#inicio">Início</a>
+      <a href="#colecao">Coleção</a>
+      <a href="#sobre">Sobre Nós</a>
+      <a href="#faq">Dúvidas</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section class="hero" id="inicio">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Fé que move. Estilo que inspira.</h1>
+    <p>RUAH — marca cristã feita por jovens que vivem o propósito com atitude.</p>
+  </div>
+</section>
+
+
+
+ <!-- Coleção -->
+<section class="colecao scroll-reveal" id="colecao">
+  <h2>Nova Coleção</h2>
+  <div class="produtos">
+    <div class="produto scroll-reveal">
+      <img src="img/ruah stret.avif" alt="Camisa 1">
+      <h3>Ruah Street</h3>
+      <p>R$119,90</p>
+      <button>Comprar</button>
+    </div>
+    <div class="produto scroll-reveal">
+      <img src="img/proposito.avif" alt="Camisa 2">
+      <h3>Propósito</h3>
+      <p>R$129,90</p>
+      <button>Comprar</button>
+    </div>
+    <div class="produto scroll-reveal">
+      <img src="img/original.avif" alt="Camisa 3">
+      <h3>Original</h3>
+      <p>R$139,90</p>
+      <button>Comprar</button>
+    </div>
+  </div>
+  <a href="colecao.html" class="btn ver-todas scroll-reveal">Ver todas as camisetas</a>
+</section>
+
+<section class="sobre scroll-reveal" id="sobre">
+    <div class="float-wrapper">
+      <h2 class="scroll-reveal">Sobre Nós</h2>
+      <p class="scroll-reveal">
+        A <strong>Ruah</strong> nasceu nas ruas, entre rolês, skates e conversas sobre fé.
+        Nossa missão é mostrar que viver com propósito também é ser autêntico, criativo e livre.
+        Cada peça carrega uma mensagem — não é só roupa, é identidade.
+      </p>
+      <p class="scroll-reveal">
+        Somos jovens, movidos por Jesus e por uma vontade insana de fazer a diferença.
+        Nossa cultura é: <em>fé, atitude e estilo</em>.
+      </p>
+    </div>
+</section>
+
+
+<!-- Dúvidas -->
+<section class="faq scroll-reveal bgcor1" id="faq">
+  <h2>Dúvidas Frequentes</h2>
+  <div class="faq-item scroll-reveal">
+    <h3>Qual o prazo de entrega?</h3>
+    <p>O prazo médio é de 5 a 10 dias úteis, dependendo da sua região.</p>
+  </div>
+  <div class="faq-item scroll-reveal">
+    <h3>As camisetas são unissex?</h3>
+    <p>Sim, nossos modelos são pensados para todos — o importante é o estilo e a mensagem.</p>
+  </div>
+  <div class="faq-item scroll-reveal">
+    <h3>Como funciona a troca?</h3>
+    <p>Você pode solicitar a troca em até 7 dias após o recebimento, direto pelo nosso e-mail de suporte.</p>
+  </div>
+</section>
+
+
+  <!-- Contato -->
+  <section class="contato bgcor" id="contato">
+    <h2>Fala com a gente</h2>
+    <p>Quer representar a Ruah ou tirar dúvidas? Manda um salve no nosso e-mail:</p>
+    <a href="mailto:contato@ruahstore.com" class="email">contato@ruahstore.com</a>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <p>© 2025 Ruah. <a href="https://misael337.github.io/Portifolio/" target="_blank" class="autor">Misael Dev</a>.</p>
+  </footer>
+
+  <script>
+// 2️⃣ Revelação de Rolagem - Sobre Nós e Nova Coleção
+// Revelação de Rolagem - Sobre Nós, Nova Coleção e Dúvidas
+const revealElements = document.querySelectorAll('.scroll-reveal');
+window.addEventListener('scroll', () => {
+  revealElements.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+});
+
+
+// 3️⃣ FAQ - sem efeito, nada
+</script>
+
+</body>
+</html>
