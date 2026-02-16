@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruah - Coleção Completa</title>
+    <title>Comprar Produto - Ruah</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="img/chat.img.png" type="image/x-icon">
 </head>
@@ -28,76 +28,29 @@
         </div>
     </header>
 
-    <main>
-        <section class="collection-page">
-            <div class="container">
-                <h2 class="collection-title">Coleção Completa</h2>
-                <div class="product-grid">
-                    <!-- Product Card 1 -->
-                    <div class="product-card">
-                        <img src="img/fornalha.jpg" alt="Camiseta Ruah Skate">
-                        <h3>CAMISETA RUAH SKATE</h3>
-                        <p>R$ 99,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH SKATE&price=99.90&img=camiseta-ruah-skate" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 2 -->
-                    <div class="product-card">
-                        <img src="img/fornalha2.jpg" alt="Camiseta Ruah Faith">
-                        <h3>CAMISETA RUAH FAITH</h3>
-                        <p>R$ 89,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH FAITH&price=89.90&img=camiseta-ruah-faith" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 3 -->
-                    <div class="product-card">
-                        <img src="img/mateus.jpg" alt="Camiseta Ruah Grace">
-                        <h3>CAMISETA RUAH GRACE</h3>
-                        <p>R$ 94,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH GRACE&price=94.90&img=camiseta-ruah-grace" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 4 -->
-                    <div class="product-card">
-                        <img src="img/ossos.jpg" alt="Camiseta Ruah Street">
-                        <h3>CAMISETA RUAH STREET</h3>
-                        <p>R$ 89,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH STREET&price=89.90&img=camiseta-ruah-street" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 5 -->
-                    <div class="product-card">
-                        <img src="img/ruahpreta.jpg" alt="Camiseta Ruah Cross">
-                        <h3>CAMISETA RUAH CROSS</h3>
-                        <p>R$ 99,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH CROSS&price=99.90&img=camiseta-ruah-cross" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 6 -->
-                    <div class="product-card">
-                        <img src="img/proverbios.jpg" alt="Camiseta Ruah Freedom">
-                        <h3>CAMISETA RUAH FREEDOM</h3>
-                        <p>R$ 84,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH FREEDOM&price=84.90&img=camiseta-ruah-freedom" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 7 -->
-                    <div class="product-card">
-                        <img src="img/ruah1.jpg" alt="Camiseta Ruah Hope">
-                        <h3>CAMISETA RUAH HOPE</h3>
-                        <p>R$ 92,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH HOPE&price=92.90&img=camiseta-ruah-hope" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 8 -->
-                    <div class="product-card">
-                        <img src="img/ruahbranca.jpg" alt="Camiseta Ruah Grit">
-                        <h3>CAMISETA RUAH GRIT</h3>
-                        <p>R$ 95,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH GRIT&price=95.90&img=camiseta-ruah-grit" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 9 -->
-                    <div class="product-card">
-                        <img src="img/ruahjamal.jpg" alt="Camiseta Ruah Vision">
-                        <h3>CAMISETA RUAH VISION</h3>
-                        <p>R$ 88,90</p>
-                        <a href="compra.html?name=CAMISETA RUAH VISION&price=88.90&img=camiseta-ruah-vision" class="btn btn-small">COMPRAR</a>
-                    </div>
-                    <!-- Product Card 10 -->
+    <main class="purchase-container">
+        <section class="product-image-section">
+            <img id="product-image" src="" alt="Imagem do Produto">
+        </section>
+        <section class="product-details-section">
+            <h2 id="product-name">Nome do Produto</h2>
+            <p id="product-price" class="product-price">R$ 0,00</p>
+            
+            <div class="color-selector">
+                <h4>Cores:</h4>
+                <div id="color-options" class="color-options">
+                    <!-- As opções de cores serão inseridas aqui pelo JavaScript -->
+                </div>
             </div>
+
+            <div class="size-selector">
+                <h4>Tamanhos:</h4>
+                <div id="size-options" class="size-options">
+                    <!-- As opções de tamanho serão inseridas aqui pelo JavaScript. -->
+                </div>
+            </div>
+            <button id="buy-button" class="btn-comprar-agora">COMPRAR AGORA</button>
+
         </section>
     </main>
 
@@ -107,9 +60,9 @@
                 <div class="footer-section">
                     <h4>Navegue</h4>
                     <ul>
-                        <li><a href="index.html#destaques">Camisetas</a></li>
-                        <li><a href="colecao.html">Coleção</a></li>
-                        <li><a href="index.html#sobre">Sobre</a></li>
+                        <li><a href="colecao.html">Camisetas</a></li>
+                        <li><a href="#">Moletons</a></li>
+                        <li><a href="#">Acessórios</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -135,6 +88,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/compra.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
