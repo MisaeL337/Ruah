@@ -26,26 +26,13 @@
       background: var(--bg);
       color: var(--white);
       font-family: var(--FP);
-      cursor: none;
+      cursor: auto;
       overflow-x: hidden;
     }
  
     /* CURSOR */
-    #c-dot, #c-ring {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      z-index: 999999;
-    }
-    #c-dot { width: 5px; height: 5px; background: var(--white); mix-blend-mode: difference; }
-    #c-ring {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(245,242,236,0.5);
-      mix-blend-mode: difference;
-      transition: width .35s, height .35s, border-color .35s;
-    }
-    #c-ring.hov { width: 56px; height: 56px; border-color: var(--gold); }
+    *, *::before, *::after { cursor: auto !important; }
+button, a, .size-btn, .swatch, .p-add-btn, .cep-btn, [onclick] { cursor: pointer !important; }
  
     /* INTRO */
     #intro {
@@ -255,62 +242,167 @@
  
     /* PRODUCT GRIDS */
     .products-grid-a {
-      display: grid; grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 3px; margin-bottom: 3px; margin-top: 0;
-    }
-    .products-grid-b { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; }
- 
-    .p-card {
-      position: relative; overflow: hidden; background: var(--gray);
-      cursor: none; opacity: 0; transform: translateY(48px);
-    }
-    .p-card-media { position: relative; aspect-ratio: 3/4; overflow: hidden; }
-    .p-card:first-child .p-card-media { aspect-ratio: 3/5; }
-    .p-card-media img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      transition: transform .9s cubic-bezier(.25,.46,.45,.94), filter .5s;
-      filter: grayscale(15%);
-    }
-    .p-card:hover .p-card-media img { transform: scale(1.07); filter: grayscale(0%); }
-    .p-placeholder {
-      width: 100%; height: 100%; background: var(--gray-mid);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; gap: 12px;
-    }
-    .p-placeholder .p-icon {
-      width: 48px; height: 48px; border: 1px solid #2e2e2e; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; color: #3a3a3a;
-    }
-    .p-placeholder span { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: #3a3a3a; }
-    .p-hover-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,10,10,.9) 0%, transparent 55%);
-      opacity: 0; transition: opacity .4s;
-      display: flex; align-items: flex-end; padding: 22px;
-    }
-    .p-card:hover .p-hover-overlay { opacity: 1; }
-    .p-add-btn {
-      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--white); border: 1px solid rgba(245,242,236,.4);
-      padding: 9px 18px; background: rgba(10,10,10,.6); cursor: none;
-      backdrop-filter: blur(4px); transition: all .3s; white-space: nowrap;
-    }
-    .p-add-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--bg); }
-    .p-card-info {
-      padding: 16px 20px; background: var(--bg); border-top: 1px solid var(--gray-mid);
-    }
-    .p-name { font-family: var(--F); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 6px; }
-    .p-meta { display: flex; justify-content: space-between; align-items: center; }
-    .p-cat { font-size: 0.56rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-    .p-price { font-family: var(--F); font-size: 1rem; letter-spacing: 0.08em; color: var(--gold); }
-    .p-price .orig { font-size: 0.68rem; text-decoration: line-through; color: var(--muted); margin-right: 6px; }
-    .p-sizes { display: flex; gap: 4px; margin-top: 9px; flex-wrap: wrap; }
-    .p-size {
-      font-size: 0.52rem; letter-spacing: 0.1em; border: 1px solid #2a2a2a;
-      padding: 3px 7px; color: var(--muted); cursor: none; transition: all .2s;
-    }
-    .p-size:hover { border-color: var(--gold); color: var(--gold); }
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 3px;
+  margin-bottom: 3px;
+  margin-top: 0;
+}
+.products-grid-b {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.p-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.p-card-link:visited,
+.p-card-link:hover,
+.p-card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+.p-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--gray);
+  cursor: none;
+  opacity: 0;
+  transform: translateY(48px);
+}
+.p-card-media {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+.p-card-link:first-child .p-card .p-card-media {
+  aspect-ratio: 3/5;
+}
+.p-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .9s cubic-bezier(.25,.46,.45,.94), filter .5s;
+  filter: grayscale(15%);
+}
+.p-card:hover .p-card-media img {
+  transform: scale(1.07);
+  filter: grayscale(0%);
+}
+.p-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--gray-mid);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.p-placeholder .p-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid #2e2e2e;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #3a3a3a;
+}
+.p-placeholder span {
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #3a3a3a;
+}
+.p-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,.9) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity .4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 22px;
+}
+.p-card:hover .p-hover-overlay {
+  opacity: 1;
+}
+.p-add-btn {
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid rgba(245,242,236,.4);
+  padding: 9px 18px;
+  background: rgba(10,10,10,.6);
+  cursor: none;
+  backdrop-filter: blur(4px);
+  transition: all .3s;
+  white-space: nowrap;
+}
+.p-add-btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg);
+}
+.p-card-info {
+  padding: 16px 20px;
+  background: var(--bg);
+  border-top: 1px solid var(--gray-mid);
+}
+.p-name {
+  font-family: var(--F);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.p-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.p-cat {
+  font-size: 0.56rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.p-price {
+  font-family: var(--F);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+.p-price .orig {
+  font-size: 0.68rem;
+  text-decoration: line-through;
+  color: var(--muted);
+  margin-right: 6px;
+}
+.p-sizes {
+  display: flex;
+  gap: 4px;
+  margin-top: 9px;
+  flex-wrap: wrap;
+}
+.p-size {
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  border: 1px solid #2a2a2a;
+  padding: 3px 7px;
+  color: var(--muted);
+  cursor: none;
+  transition: all .2s;
+}
+.p-size:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
  
     /* MANIFESTO */
     #manifesto { background: var(--gray); border-top: 1px solid var(--gray-mid); }
@@ -435,8 +527,7 @@
 </head>
 <body>
  
-<div id="c-dot"></div>
-<div id="c-ring"></div>
+
  
 <div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cart-drawer">
@@ -571,162 +662,176 @@
     <div style="height:40px"></div>
  
     <!-- Linha 1: destaque largo + 2 menores -->
-    <div class="products-grid-a">
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <!-- Troque pelo caminho: img/produto1.jpg -->
-          <img src="img/forblack.png" alt="Camisa RUAH 01"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto1.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA OVERFLOW</p>
-          <div class="p-meta">
-            <span class="p-cat">Oversized · Preta</span>
-            <span class="p-price">R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span><span class="p-size">XGG</span>
-          </div>
+    <!-- Linha 1: destaque largo + 2 menores -->
+<div class="products-grid-a">
+
+  <a href="produto.html?id=1" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/forblack.png" alt="Camisa RUAH 01"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>forblack.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
         </div>
       </div>
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/ruan.png" alt="Camisa RUAH 02"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto2.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA FORNALAHA</p>
+        <div class="p-meta">
+          <span class="p-cat">Oversized · Preta</span>
+          <span class="p-price">R$ 100,00</span>
         </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA LOGOS</p>
-          <div class="p-meta">
-            <span class="p-cat">Regular · Off-white</span>
-            <span class="p-price">R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span><span class="p-size">XGG</span>
         </div>
       </div>
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/juior.png" alt="Camisa RUAH 03"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto3.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA RUAH CROSS</p>
-          <div class="p-meta">
-            <span class="p-cat">Oversized · Cinza</span>
-            <span class="p-price"><span class="orig">R$ 100,00</span>R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
-        </div>
-      </div>
- 
     </div>
- 
-    <!-- Linha 2: 4 colunas iguais -->
-    <div class="products-grid-b">
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/proptraz.png" alt="Camisa RUAH 04"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto4.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA ALPHA</p>
-          <div class="p-meta">
-            <span class="p-cat">Regular · Branca</span>
-            <span class="p-price">R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
+  </a>
+
+  <a href="produto.html?id=2" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/ruan.png" alt="Camisa RUAH 02"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>ruan.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
         </div>
       </div>
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/boy.png" alt="Camisa RUAH 05"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto5.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA RUAH</p>
+        <div class="p-meta">
+          <span class="p-cat">Regular · Off-white</span>
+          <span class="p-price">R$ 100,00</span>
         </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA ESPÍRITO</p>
-          <div class="p-meta">
-            <span class="p-cat">Oversized · Preta</span>
-            <span class="p-price">R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
         </div>
       </div>
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/flash.png" alt="Camisa RUAH 06"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto6.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA SHEKINAH</p>
-          <div class="p-meta">
-            <span class="p-cat">Regular · Creme</span>
-            <span class="p-price">R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
-        </div>
-      </div>
- 
-      <div class="p-card">
-        <div class="p-card-media">
-          <img src="img/ruahBranca.png" alt="Camisa RUAH 07"
-               onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>produto7.jpg</span></div>'" />
-          <div class="p-hover-overlay">
-            <button class="p-add-btn" onclick="addToCart(this)">Adicionar ao Carrinho</button>
-          </div>
-        </div>
-        <div class="p-card-info">
-          <p class="p-name">CAMISA ÔMEGA</p>
-          <div class="p-meta">
-            <span class="p-cat">Oversized · Verde Musgo</span>
-            <span class="p-price"><span class="orig">R$ 100,00</span>R$ 100,00</span>
-          </div>
-          <div class="p-sizes">
-            <span class="p-size">P</span><span class="p-size">M</span>
-            <span class="p-size">G</span><span class="p-size">GG</span>
-          </div>
-        </div>
-      </div>
- 
     </div>
+  </a>
+
+  <a href="produto.html?id=3" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/juior.png" alt="Camisa RUAH 03"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>juior.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
+        </div>
+      </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA FORNALAHA</p>
+        <div class="p-meta">
+          <span class="p-cat">Oversized · Cinza</span>
+          <span class="p-price">R$ 100,00</span>
+        </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<!-- Linha 2: 4 colunas iguais -->
+<div class="products-grid-b">
+
+  <a href="produto.html?id=4" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/proptraz.png" alt="Camisa RUAH 04"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>proptraz.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
+        </div>
+      </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA PROVERBIOS</p>
+        <div class="p-meta">
+          <span class="p-cat">Regular · Branca</span>
+          <span class="p-price">R$ 100,00</span>
+        </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="produto.html?id=5" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/boy.png" alt="Camisa RUAH 05"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>boy.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
+        </div>
+      </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA RUAH</p>
+        <div class="p-meta">
+          <span class="p-cat">Oversized · Preta</span>
+          <span class="p-price">R$ 100,00</span>
+        </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="produto.html?id=6" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/flash.png" alt="Camisa RUAH 06"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>flash.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
+        </div>
+      </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA RUAH </p>
+        <div class="p-meta">
+          <span class="p-cat">Regular · Creme</span>
+          <span class="p-price">R$ 100,00</span>
+        </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <a href="produto.html?id=7" class="p-card-link">
+    <div class="p-card">
+      <div class="p-card-media">
+        <img src="img/ruahBranca.png" alt="Camisa RUAH 07"
+             onerror="this.parentElement.innerHTML='<div class=&quot;p-placeholder&quot;><div class=&quot;p-icon&quot;>☩</div><span>ruahBranca.png</span></div>'" />
+        <div class="p-hover-overlay">
+          <span class="p-add-btn">Ver Produto →</span>
+        </div>
+      </div>
+      <div class="p-card-info">
+        <p class="p-name">CAMISA RUAH</p>
+        <div class="p-meta">
+          <span class="p-cat">Oversized · Verde Musgo</span>
+          <span class="p-price">R$ 100,00</span>
+        </div>
+        <div class="p-sizes">
+          <span class="p-size">P</span><span class="p-size">M</span>
+          <span class="p-size">G</span><span class="p-size">GG</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+</div>
   </section>
  
   <!-- MANIFESTO -->
@@ -819,56 +924,45 @@
   </footer>
  
 </div><!-- /#site-wrapper -->
- 
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
- 
+
 <script>
   gsap.registerPlugin(ScrollTrigger);
- 
+
   /* ── CURSOR ── */
-  const dot = document.getElementById('c-dot');
-  const ring = document.getElementById('c-ring');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  gsap.ticker.add(() => {
-    gsap.set(dot, { x: mx, y: my });
-    rx += (mx - rx) * 0.11;
-    ry += (my - ry) * 0.11;
-    gsap.set(ring, { x: rx, y: ry });
-  });
-  document.querySelectorAll('a, button, .p-card, .p-size').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hov'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hov'));
-  });
- 
-  /* ── INTRO VIDEO ──
-     O vídeo roda em tela cheia.
-     Perto do final, o logo da RUAH faz fade-in.
-     Quando termina (ou quase), o site inteiro revela suavemente. */
-  const intro    = document.getElementById('intro');
-  const vid      = document.getElementById('intro-video');
-  const iLogo    = document.getElementById('intro-logo');
-  const wrapper  = document.getElementById('site-wrapper');
-  let revealed   = false;
- 
+
+
+  /* ── INTRO VIDEO ── */
+  /* ── INTRO VIDEO ── */
+const intro   = document.getElementById('intro');
+const vid     = document.getElementById('intro-video');
+const iLogo   = document.getElementById('intro-logo');
+const wrapper = document.getElementById('site-wrapper');
+let revealed  = false;
+
+// Se já assistiu nessa sessão, pula direto pro site
+if (sessionStorage.getItem('ruah_intro_seen')) {
+  intro.style.display = 'none';
+  wrapper.style.visibility = 'visible';
+  wrapper.style.opacity = '1';
+  document.body.style.overflow = '';
+  setTimeout(initAnimations, 100);
+} else {
   document.body.style.overflow = 'hidden';
- 
+
   function showLogo() {
     gsap.to(iLogo, { opacity: 1, y: -12, duration: 1.3, ease: 'power3.out' });
   }
- 
+
   function revealSite() {
     if (revealed) return;
     revealed = true;
     vid.pause();
- 
-    // pequena pausa depois do logo aparecer
+    sessionStorage.setItem('ruah_intro_seen', '1'); // marca como visto
     gsap.to(intro, {
-      opacity: 0,
-      delay: 1.6,
-      duration: 1.5,
-      ease: 'power2.inOut',
+      opacity: 0, delay: 1.6, duration: 1.5, ease: 'power2.inOut',
       onStart() {
         wrapper.style.visibility = 'visible';
         gsap.to(wrapper, { opacity: 1, duration: 1.5, ease: 'power2.inOut' });
@@ -880,25 +974,21 @@
       }
     });
   }
- 
+
   vid.addEventListener('timeupdate', () => {
     if (!vid.duration) return;
     const remaining = vid.duration - vid.currentTime;
-    // Aparece logo a 2s do fim
     if (remaining <= 2.2 && iLogo.style.opacity != '1') showLogo();
-    // Para no último frame
     if (remaining <= 0.08) { vid.pause(); revealSite(); }
   });
- 
   vid.addEventListener('ended', () => revealSite());
   vid.addEventListener('error', () => { showLogo(); setTimeout(revealSite, 800); });
- 
-  // Fallback: autoplay bloqueado
   const apFallback = setTimeout(() => {
     if (!revealed && vid.currentTime === 0) { showLogo(); setTimeout(revealSite, 600); }
   }, 3200);
   vid.addEventListener('play', () => clearTimeout(apFallback));
- 
+}
+
   /* ── SCROLL ANIMATIONS ── */
   function initAnimations() {
     ScrollTrigger.create({
@@ -906,16 +996,13 @@
       onUpdate: s => document.getElementById('main-header')
         .classList.toggle('slim', s.progress > 0)
     });
- 
     document.querySelectorAll('.p-card').forEach((card, i) => {
       gsap.to(card, {
-        opacity: 1, y: 0,
-        duration: 0.85, delay: (i % 4) * 0.09,
+        opacity: 1, y: 0, duration: 0.85, delay: (i % 4) * 0.09,
         ease: 'power3.out',
         scrollTrigger: { trigger: card, start: 'top 90%' }
       });
     });
- 
     gsap.from('.manifesto-left', {
       x: -50, opacity: 0, duration: 1.1, ease: 'power3.out',
       scrollTrigger: { trigger: '#manifesto', start: 'top 78%' }
@@ -924,19 +1011,137 @@
       x: 50, opacity: 0, duration: 1.1, ease: 'power3.out',
       scrollTrigger: { trigger: '#manifesto', start: 'top 78%' }
     });
- 
     gsap.from('.cross-banner-content', {
       y: 50, opacity: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: '.cross-banner', start: 'top 72%' }
     });
- 
     gsap.from('.newsletter h3, .newsletter p', {
       y: 28, opacity: 0, stagger: 0.14, duration: 0.9, ease: 'power3.out',
       scrollTrigger: { trigger: '.newsletter', start: 'top 75%' }
     });
   }
- 
-  /* ── CART ── */
+
+  /* ── CARRINHO ── */
+
+  // Lista de produtos disponíveis no index (ordem igual aos cards)
+  const PRODUTOS = [
+    { id: 'OVF001', nome: 'Camisa Overflow',   cor: 'Preta',       preco: 219.90, img: 'img/produto1.jpg' },
+    { id: 'LOG001', nome: 'Camisa Logos',       cor: 'Off-white',   preco: 199.90, img: 'img/produto2.jpg' },
+    { id: 'CRS001', nome: 'Camisa Ruah Cross',  cor: 'Cinza',       preco: 219.90, img: 'img/produto3.jpg' },
+    { id: 'ALP001', nome: 'Camisa Alpha',       cor: 'Branca',      preco: 189.90, img: 'img/produto4.jpg' },
+    { id: 'ESP001', nome: 'Camisa Espírito',    cor: 'Preta',       preco: 219.90, img: 'img/produto5.jpg' },
+    { id: 'SHK001', nome: 'Camisa Shekinah',    cor: 'Creme',       preco: 199.90, img: 'img/produto6.jpg' },
+    { id: 'OMG001', nome: 'Camisa Ômega',       cor: 'Verde Musgo', preco: 209.90, img: 'img/produto7.jpg' },
+  ];
+
+  // Carrega carrinho do localStorage
+  function getCart() {
+    return JSON.parse(localStorage.getItem('ruah_cart') || '[]');
+  }
+  function saveCart(cart) {
+    localStorage.setItem('ruah_cart', JSON.stringify(cart));
+  }
+
+  function addToCart(btn) {
+    // Descobre qual produto pelo índice do card clicado
+    const card = btn.closest('.p-card');
+    const allCards = Array.from(document.querySelectorAll('.p-card'));
+    const idx = allCards.indexOf(card);
+    const produto = PRODUTOS[idx] || PRODUTOS[0];
+
+    const cart = getCart();
+    const existing = cart.find(i => i.id === produto.id);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({ ...produto, qty: 1, tamanho: '—' });
+    }
+    saveCart(cart);
+    renderCart();
+    openCart();
+  }
+
+  function removeFromCart(id) {
+    const cart = getCart().filter(i => i.id !== id);
+    saveCart(cart);
+    renderCart();
+  }
+
+  function renderCart() {
+    const cart = getCart();
+    const body = document.querySelector('.cart-body');
+    const badge = document.querySelector('.cart-badge');
+
+    const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+    badge.textContent = totalQty;
+
+    if (cart.length === 0) {
+      body.innerHTML = `
+        <p class="cart-empty">Seu carrinho está vazio.</p>
+        <p style="font-size:.62rem;letter-spacing:.15em;color:var(--muted);text-align:center;line-height:1.8">
+          Adicione uma camisa e<br>vista o que você acredita.
+        </p>`;
+      return;
+    }
+
+    const total = cart.reduce((s, i) => s + i.preco * i.qty, 0);
+
+    body.innerHTML = `
+      <div style="width:100%;display:flex;flex-direction:column;gap:0;flex:1;overflow-y:auto">
+        ${cart.map(item => `
+          <div style="display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--gray-mid);align-items:center">
+            <div style="width:70px;height:84px;background:var(--gray-mid);flex-shrink:0;overflow:hidden">
+              <img src="${item.img}" alt="${item.nome}"
+                   style="width:100%;height:100%;object-fit:cover"
+                   onerror="this.parentElement.style.background='#2a2a2a'" />
+            </div>
+            <div style="flex:1;min-width:0">
+              <p style="font-family:var(--F);font-size:.95rem;letter-spacing:.1em;margin-bottom:4px">${item.nome}</p>
+              <p style="font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">${item.cor} · Tam. ${item.tamanho}</p>
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <p style="font-family:var(--F);font-size:1rem;color:var(--gold);letter-spacing:.08em">
+                  R$ ${(item.preco * item.qty).toFixed(2).replace('.',',')}
+                </p>
+                <div style="display:flex;align-items:center;gap:10px">
+                  <span style="font-size:.7rem;color:var(--muted)">Qtd: ${item.qty}</span>
+                  <button onclick="removeFromCart('${item.id}')"
+                    style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s"
+                    onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">
+                    Remover
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="width:100%;padding-top:20px;border-top:1px solid var(--gray-mid);margin-top:auto">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+          <span style="font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)">Total</span>
+          <span style="font-family:var(--F);font-size:1.6rem;color:var(--gold);letter-spacing:.06em">
+            R$ ${total.toFixed(2).replace('.',',')}
+          </span>
+        </div>
+        <p style="font-size:.58rem;letter-spacing:.12em;color:var(--muted);margin-bottom:16px">
+          PIX com 5% off: R$ ${(total * 0.95).toFixed(2).replace('.',',')}
+        </p>
+        <a href="produto.html"
+           style="display:block;width:100%;padding:15px;background:var(--gold);color:var(--bg);text-align:center;font-family:var(--FP);font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;text-decoration:none;transition:background .3s"
+           onmouseover="this.style.background='var(--gold-light)'"
+           onmouseout="this.style.background='var(--gold)'">
+          Finalizar Compra
+        </a>
+        <button onclick="closeCart()"
+          style="display:block;width:100%;padding:13px;margin-top:8px;background:transparent;border:1px solid var(--gray-mid);color:rgba(245,242,236,.5);font-family:var(--FP);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:border-color .3s"
+          onmouseover="this.style.borderColor='rgba(245,242,236,.35)'"
+          onmouseout="this.style.borderColor='var(--gray-mid)'">
+          Continuar Comprando
+        </button>
+      </div>
+    `;
+  }
+
   function openCart() {
     document.getElementById('cart-drawer').classList.add('open');
     document.getElementById('cart-overlay').classList.add('show');
@@ -947,11 +1152,9 @@
     document.getElementById('cart-overlay').classList.remove('show');
     document.body.style.overflow = '';
   }
-  function addToCart() {
-    const badge = document.querySelector('.cart-badge');
-    badge.textContent = parseInt(badge.textContent) + 1;
-    openCart();
-  }
+
+  // Renderiza ao carregar (caso já tenha itens salvos)
+  renderCart();
 </script>
 </body>
 </html>
